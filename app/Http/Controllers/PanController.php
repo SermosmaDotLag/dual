@@ -13,6 +13,10 @@ class PanController extends Controller
         return view('show')
             ->with('bread', $bread);
     }
+    public function showError(): View{
+
+        return view('error403');
+    }
 
     public function index(): View{
         return view('index');

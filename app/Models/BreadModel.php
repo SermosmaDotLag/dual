@@ -49,4 +49,3 @@ class BreadModel extends Model
         return $this;
     }
 }
-?>

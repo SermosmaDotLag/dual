@@ -17,28 +17,6 @@
     <div class="container mt-5">
         <h1 class="mb-4">Consumo Eléctrico</h1>
 
-        <div class="table-responsive">
-            <table class="table table-bordered" id="testDataTable">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>ID</th>
-                        <th>Fecha</th>
-                        <th>Mes</th>
-                        <th>Consumo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($consume as $consume)
-                        <tr>
-                            <td>{{ $consume->id }}</td>
-                            <td>{{ $consume->date }}</td>
-                            <td>{{ $consume->monthName }}</td>
-                            <td>{{ $consume->consume }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
 
         <div class="mt-5">
             <canvas id="barChart" width="400" height="200"></canvas>

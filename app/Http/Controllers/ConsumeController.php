@@ -7,10 +7,17 @@ use \Illuminate\View\View;
 
 class ConsumeController extends Controller
 {
-    public function showConsume(): View{
+    public function showDataTableConsume(): View{
         $consume = ConsumeModel::getAllConsume();
 
-        return view('consume')
+        return view('consume-content-datatable')
+            ->with('consume', $consume);
+    }
+
+    public function showChartConsume(): View{
+        $consume = ConsumeModel::getAllConsume();
+
+        return view('consume-content-chart')
             ->with('consume', $consume);
     }
 

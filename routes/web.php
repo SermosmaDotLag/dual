@@ -16,6 +16,8 @@ use App\Http\Controllers\PanController;
 use App\Http\Controllers\CacheController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\ConsumeController;
+use App\Http\Controllers\PokeApiController;
+
 
 Route::get('show-bread', [PanController::class, 'showBread'])->name('show.bread');
 Route::get('error', [PanController::class, 'showError'])->name('error');
@@ -33,11 +35,55 @@ Route::get('test', [CacheController::class, 'test'])->name('test.cache');
 Route::get('download', [DownloadController::class, 'downloadDog'])->name('download.dog');
 
 
-Route::get('consume', [ConsumeController::class, 'showConsume'])->name('show.consume');
+Route::get('/datatable-consume', [ConsumeController::class, 'showDataTableConsume'])->name('datatable.consume');
+Route::get('/chart-consume', [ConsumeController::class, 'showChartConsume'])->name('chart.consume');
 Route::get('/chartData', [ConsumeController::class, 'chartData']);
 
 Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/poke-view', [PokeApiController::class, 'show'])->name('poke.view');
+Route::get('/testPokeApi', [PokeApiController::class, 'insertData'])->name('api');
 
+// Route::get('/testPokeApi', function () {
+//     $baseUrl = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20';
+//     $continue = true;
+
+//     while ($continue) {
+//         $curl = curl_init();
+
+//         curl_setopt_array($curl, [
+//             CURLOPT_URL => $baseUrl,
+//             CURLOPT_RETURNTRANSFER => true,
+//             CURLOPT_MAXREDIRS => 10,
+//             CURLOPT_TIMEOUT => 10,
+//             CURLOPT_FOLLOWLOCATION => true,
+//             CURLOPT_FAILONERROR => true,
+//         ]);
+
+//         $curlResponse['message'] = curl_exec($curl);
+//         $curlResponse['status'] = curl_getinfo($curl);
+//         $curlResponse['errors'] = curl_error($curl);
+//         curl_close($curl);
+
+//         $apiData = json_decode($curlResponse['message'], true);
+
+//         if (isset($apiData['results']) && is_array($apiData['results'])) {
+//             foreach ($apiData['results'] as $result) {
+//                 \App\Models\ApiModel::create([
+//                     'pokeName' => $result['name'],
+//                     'url' => $result['url'],
+//                 ]);
+//             }
+//         }
+
+//         if (isset($apiData['next']) && $apiData['next']) {
+//             $baseUrl = $apiData['next'];
+//         } else {
+//             $continue = false;
+//         }
+//     }
+
+//     echo 'Datos guardados exitosamente';
+// })->name('api');
